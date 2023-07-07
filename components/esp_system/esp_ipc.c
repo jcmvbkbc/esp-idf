@@ -125,8 +125,14 @@ static void esp_ipc_init(void)
     }
 }
 
+int g_abort_on_ipc;
+
 static esp_err_t esp_ipc_call_and_wait(uint32_t cpu_id, esp_ipc_func_t func, void* arg, esp_ipc_wait_t wait_for)
 {
+	if (g_abort_on_ipc) {
+		abort();
+	}
+
     if (cpu_id >= portNUM_PROCESSORS) {
         return ESP_ERR_INVALID_ARG;
     }
