@@ -1002,6 +1002,8 @@ static void prvInitialiseNewTask( TaskFunction_t pxTaskCode,
     StackType_t * pxTopOfStack;
     UBaseType_t x;
 
+    if (xCoreID == tskNO_AFFINITY)
+	    xCoreID = 0;
     #if ( configNUM_CORES == 1 )
         {
             xCoreID = 0;
