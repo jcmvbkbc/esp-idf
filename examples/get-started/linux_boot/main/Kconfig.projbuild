@@ -1,0 +1,9 @@
+menu "Linux Boot Configuration"
+    config LINUX_CORE
+        int "Core to boot linux on"
+        range 0 1
+        default 0
+        help
+            Linux can be booted on any core of multicore ESP SoC, but
+            it must be configured accordingly (e.g. IRQ routing).
+endmenu
